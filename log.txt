@@ -1,0 +1,126 @@
+PS C:\Users\aswa8> cd ".\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\"
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop> ls
+
+
+    Directory: C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+da---l        2021-09-22  11:20 AM                .vscode
+da---l        2021-12-20  12:49 PM                Hadoop_Mini_Project
+
+
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop> cd .\docker-hadoop\
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> ls
+
+    Directory: C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+da---l        2021-12-01   8:35 PM                base
+da---l        2021-12-01   8:35 PM                datanode
+da---l        2021-12-01   8:35 PM                historyserver
+da---l        2021-12-01   8:35 PM                namenode
+da---l        2021-12-01   8:35 PM                nginx
+da---l        2021-12-01   8:35 PM                nodemanager
+da---l        2021-12-01   8:35 PM                resourcemanager
+da---l        2021-12-01   8:35 PM                submit
+-a---l        2021-12-01   8:35 PM              7 .gitignore
+-a---l        2021-12-01   8:35 PM           2632 docker-compose-v3.yml
+
+
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker-compose up -d
+Creating historyserver   ... done
+Creating resourcemanager ... done
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker ps -a
+CONTAINER ID   IMAGE                                                    COMMAND                  CREATED          STATUS                            PORTS                                            NAMES
+0cd8ff530dd4   bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8       "/entrypoint.sh /run…"   13 seconds ago   Up 7 seconds (health: starting)   8042/tcp                                         nodemanager
+757b67a95165   bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   13 seconds ago   Up 7 seconds (health: starting)   9864/tcp                                         datanode
+5d2f774703d3   bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8   "/entrypoint.sh /run…"   13 seconds ago   Up 8 seconds (health: starting)   8088/tcp                                         resourcemanager
+6a147934d7d7   bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   13 seconds ago   Up 8 seconds (health: starting)   0.0.0.0:9000->9000/tcp, 0.0.0.0:9870->9870/tcp   namenode
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker ps -a
+CONTAINER ID   IMAGE                                                    COMMAND                  CREATED              STATUS                        PORTS                                            NAMES
+0cd8ff530dd4   bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8       "/entrypoint.sh /run…"   About a minute ago   Up About a minute (healthy)   8042/tcp                                         nodemanager
+757b67a95165   bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   About a minute ago   Up About a minute (healthy)   9864/tcp                                         datanode
+7a9dde5954f5   bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8     "/entrypoint.sh /run…"   About a minute ago   Up About a minute (healthy)   8188/tcp                                         historyserver
+5d2f774703d3   bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8   "/entrypoint.sh /run…"   About a minute ago   Up 39 seconds (healthy)       8088/tcp                                         resourcemanager
+6a147934d7d7   bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   About a minute ago   Up About a minute (healthy)   0.0.0.0:9000->9000/tcp, 0.0.0.0:9870->9870/tcp   namenode
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> cd ..
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop> cd .\Hadoop_Mini_Project\
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\Hadoop_Mini_Project> cd ..
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop> cd .\docker-hadoop\
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker cp "C:/Users/aswa8/OneDrive - Queen's University/Desktop/Springboard/17 - Hadoop\Hadoop_Mini_Project/autoinc_mapper1.py" namenode:autoinc_mapper1.py
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker cp "C:/Users/aswa8/OneDrive - Queen's University/Desktop/Springboard/17 - Hadoop\Hadoop_Mini_Project/autoinc_reducer1.py" namenode:autoinc_reducer1.py
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker cp "C:/Users/aswa8/OneDrive - Queen's University/Desktop/Springboard/17 - Hadoop\Hadoop_Mini_Project/autoinc_mapper2.py" namenode:autoinc_mapper2.py
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker cp "C:/Users/aswa8/OneDrive - Queen's University/Desktop/Springboard/17 - Hadoop\Hadoop_Mini_Project/autoinc_reducer2.py" namenode:autoinc_reducer2.py
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker exec -it namenode bash
+root@6a147934d7d7:/# ls
+KEYS                autoinc_mapper2.py   autoinc_reducer2.py  boot  entrypoint.sh  hadoop       home  lib64  mnt  proc  run     sbin  sys  usr
+autoinc_mapper1.py  autoinc_reducer1.py  bin                  dev   etc            hadoop-data  lib   media  opt  root  run.sh  srv   tmp  var
+root@6a147934d7d7:/# hdfs dfs -mkdir -p /user/root/input
+root@6a147934d7d7:/# exit
+exit
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker cp "C:/Users/aswa8/OneDrive - Queen's University/Desktop/Springboard/17 - Hadoop/Hadoop_Mini_Project/data.csv" namenode:data.csv
+PS C:\Users\aswa8\OneDrive - Queen's University\Desktop\Springboard\17 - Hadoop\docker-hadoop> docker exec -it namenode bash
+root@6a147934d7d7:/# hdfs dfs -put data.csv /user/root/input
+put: `/user/root/input/data.csv': File exists
+root@6a147934d7d7:/# hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py - fi
+le autoinc_reducer1.py -reducer autoinc_reducer1.py -input input -output output
+Found 3 unexpected arguments on the command line [-, file, autoinc_reducer1.py]
+Try -help for more information
+Streaming Command Failed!
+root@6a147934d7d7:/# hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \
+> -file autoinc_mapper1.py -mapper autoinc_mapper1.py \
+> -file autoinc_reducer1.py -reducer autoinc_reducer1.py \
+> -input input -output output
+2022-01-03 18:13:59,907 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar6836197603274872072/] [] /tmp/streamjob2911741844455656640.jar tmpDir=null
+2022-01-03 18:14:00,713 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:14:00,849 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:14:00,876 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:14:00,877 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:14:00,956 ERROR streaming.StreamJob: Error Launching job : Output directory hdfs://namenode:9000/user/root/output already exists
+Streaming Command Failed!
+root@6a147934d7d7:/# hdfs dfs -rmr user/root/output
+rmr: DEPRECATED: Please use '-rm -r' instead.
+rmr: `user/root/output': No such file or directory
+root@6a147934d7d7:/# hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input input -output output
+2022-01-03 18:14:37,611 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar4399436823935073589/] [] /tmp/streamjob3178583343053204111.jar tmpDir=null
+2022-01-03 18:14:38,406 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:14:38,543 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:14:38,571 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:14:38,571 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:14:38,644 ERROR streaming.StreamJob: Error Launching job : Output directory hdfs://namenode:9000/user/root/output already exists
+Streaming Command Failed!
+root@6a147934d7d7:/# hdfs dfs -rm -r user/root/output
+rm: `user/root/output': No such file or directory
+root@6a147934d7d7:/# hdfs dfs -rm -r /user/root/output
+Deleted /user/root/output
+root@6a147934d7d7:/# hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input input -output output
+2022-01-03 18:17:24,463 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar9111372508887097111/] [] /tmp/streamjob4849514342550850958.jar tmpDir=null
+2022-01-03 18:17:25,256 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:17:25,399 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:17:25,427 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.3:8032
+2022-01-03 18:17:25,427 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.5:10200
+2022-01-03 18:17:25,655 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1641232694270_0001
+2022-01-03 18:17:25,752 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:25,875 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:26,357 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:26,420 INFO mapred.FileInputFormat: Total input files to process : 1
+2022-01-03 18:17:26,485 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:26,507 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:26,516 INFO mapreduce.JobSubmitter: number of splits:2
+2022-01-03 18:17:26,668 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2022-01-03 18:17:27,081 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1641232694270_0001
+2022-01-03 18:17:27,081 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2022-01-03 18:17:27,217 INFO conf.Configuration: resource-types.xml not found
+2022-01-03 18:17:27,218 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2022-01-03 18:17:27,911 INFO impl.YarnClientImpl: Submitted application application_1641232694270_0001
+2022-01-03 18:17:27,943 INFO mapreduce.Job: The url to track the job: http://resourcemanager:8088/proxy/application_1641232694270_0001/
+2022-01-03 18:17:27,945 INFO mapreduce.Job: Running job: job_1641232694270_0001
+2022-01-03 18:17:35,081 INFO mapreduce.Job: Job job_1641232694270_0001 running in uber mode : false
+2022-01-03 18:17:35,088 INFO mapreduce.Job:  map 0% reduce 0%
